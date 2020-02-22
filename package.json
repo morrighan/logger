@@ -1,7 +1,6 @@
 {
-    "private": true,
     "name": "@morrighan/logger",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "The logger.",
     "homepage": "https://github.com/morrighan/logger",
     "bugs": {
@@ -43,7 +42,7 @@
         "@babel/plugin-transform-runtime": "^7.8.3",
         "@babel/preset-env": "^7.8.4",
         "@babel/preset-typescript": "^7.8.3",
-        "@morrighan/eslint-config": "^1.5.2",
+        "@morrighan/eslint-config": "^1.5.3",
         "@types/highlight.js": "^9.12.3",
         "@types/lodash": "^4.14.149",
         "@types/morgan": "^1.7.37",
