@@ -1,0 +1,61 @@
+{
+    "private": true,
+    "name": "@morrighan/logger",
+    "version": "1.0.0",
+    "description": "The logger.",
+    "homepage": "https://github.com/morrighan/logger",
+    "bugs": {
+        "url": "https://github.com/morrighan/logger/issues"
+    },
+    "license": "UNLICENSED",
+    "author": {
+        "name": "Yongbin Min",
+        "email": "contact@cichol.com",
+        "url": "https://www.cichol.com/"
+    },
+    "main": "releases/application.js",
+    "directories": {
+        "lib": "releases"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/morrighan/logger.git"
+    },
+    "scripts": {
+        "build": "npx babel --root-mode upward sources --extensions .js,.ts --out-dir releases --source-maps inline --delete-dir-on-start",
+        "test": "npx npm-run-all test:*",
+        "test:eslint": "npx eslint . --ext .js --ext .ts",
+        "test:tsc": "npx tsc --project . --noEmit"
+    },
+    "dependencies": {
+        "chalk": "^3.0.0",
+        "highlight.js": "^9.18.1",
+        "lodash": "^4.17.15",
+        "moment": "^2.24.0",
+        "morgan": "^1.9.1",
+        "pretty-bytes": "^5.3.0",
+        "pretty-ms": "^6.0.0",
+        "winston": "^3.2.1"
+    },
+    "devDependencies": {
+        "@babel/cli": "^7.8.4",
+        "@babel/core": "^7.8.4",
+        "@babel/plugin-transform-runtime": "^7.8.3",
+        "@babel/preset-env": "^7.8.4",
+        "@babel/preset-typescript": "^7.8.3",
+        "@morrighan/eslint-config": "^1.5.2",
+        "@types/highlight.js": "^9.12.3",
+        "@types/lodash": "^4.14.149",
+        "@types/morgan": "^1.7.37",
+        "eslint": "^6.8.0",
+        "npm-run-all": "^4.1.5",
+        "typescript": "^3.7.5"
+    },
+    "engines": {
+        "node": "^12.16.1",
+        "npm": "^6.13.7"
+    },
+    "publishConfig": {
+        "registry": "https://npm.pkg.github.com/"
+    }
+}
