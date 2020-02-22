@@ -1,6 +1,6 @@
 {
     "name": "@morrighan/logger",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "description": "The logger.",
     "homepage": "https://github.com/morrighan/logger",
     "bugs": {
@@ -12,7 +12,7 @@
         "email": "contact@cichol.com",
         "url": "https://www.cichol.com/"
     },
-    "main": "releases/application.js",
+    "main": "releases/index.js",
     "directories": {
         "lib": "releases"
     },
