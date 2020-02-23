@@ -1,6 +1,6 @@
 {
     "root": true,
-    "extends": "@cichol",
+    "extends": "@morrighan",
     "parserOptions": {
         "project": "tsconfig.json",
         "tsconfigRootDir": "."
