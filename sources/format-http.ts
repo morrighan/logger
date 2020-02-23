@@ -17,7 +17,7 @@ function getColorForStatusCode(statusCode: number): string {
     case 3: return 'orange';
     case 4:
     case 5: return 'red';
-    default: return 'default';
+    default: return 'grey';
     }
 }
 
