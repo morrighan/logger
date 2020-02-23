@@ -14,7 +14,7 @@ interface Tokens {
 function getColorForStatusCode(statusCode: number): string {
     switch (Math.floor(statusCode / 100)) {
     case 2: return 'green';
-    case 3: return 'orange';
+    case 3: return 'magenta';
     case 4:
     case 5: return 'red';
     default: return 'grey';
