@@ -1,6 +1,6 @@
 {
     "name": "@morrighan/logger",
-    "version": "1.0.6",
+    "version": "1.0.7",
     "description": "The logger.",
     "homepage": "https://github.com/morrighan/logger",
     "bugs": {
@@ -21,7 +21,9 @@
         "url": "git+https://github.com/morrighan/logger.git"
     },
     "scripts": {
-        "build": "npx babel --root-mode upward sources --extensions .js,.ts --out-dir releases --source-maps inline --delete-dir-on-start",
+        "build": "npx npm-run-all build:*",
+        "build:babel": "npx babel --root-mode upward sources --extensions .js,.ts --out-dir releases --source-maps inline --delete-dir-on-start",
+        "build:tsc": "npx tsc --noEmit false --declaration --emitDeclarationOnly --outDir releases",
         "test": "npx npm-run-all test:*",
         "test:eslint": "npx eslint . --ext .js --ext .ts",
         "test:tsc": "npx tsc --project . --noEmit"
