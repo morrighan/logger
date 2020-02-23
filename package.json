@@ -1,6 +1,6 @@
 {
     "name": "@morrighan/logger",
-    "version": "1.0.5",
+    "version": "1.0.6",
     "description": "The logger.",
     "homepage": "https://github.com/morrighan/logger",
     "bugs": {
