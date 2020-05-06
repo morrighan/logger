@@ -1,8 +1,11 @@
 {
     "root": true,
-    "extends": "@morrighan",
+    "extends": "@cichol",
     "parserOptions": {
         "project": "tsconfig.json",
         "tsconfigRootDir": "."
+    },
+    "rules": {
+        "no-shadow": "off"
     }
 }
