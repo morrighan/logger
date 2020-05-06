@@ -1,12 +1,12 @@
 {
-    "name": "@morrighan/logger",
-    "version": "1.0.8",
-    "description": "The logger.",
+    "name": "@cichol/logger",
+    "version": "2.0.0-beta.0",
+    "description": "A logger based on winston for personal projects.",
     "homepage": "https://github.com/morrighan/logger",
     "bugs": {
         "url": "https://github.com/morrighan/logger/issues"
     },
-    "license": "UNLICENSED",
+    "license": "MIT",
     "author": {
         "name": "Yongbin Min",
         "email": "contact@cichol.com",
@@ -14,7 +14,8 @@
     },
     "main": "releases/index.js",
     "directories": {
-        "lib": "releases"
+        "lib": "releases",
+        "test": "tests"
     },
     "repository": {
         "type": "git",
@@ -23,40 +24,48 @@
     "scripts": {
         "build": "npx npm-run-all build:*",
         "build:babel": "npx babel --root-mode upward sources --extensions .js,.ts --out-dir releases --source-maps inline --delete-dir-on-start",
-        "build:tsc": "npx tsc --noEmit false --declaration --emitDeclarationOnly --outDir releases",
+        "build:tsc": "npx tsc --project sources --outDir releases",
         "test": "npx npm-run-all test:*",
-        "test:eslint": "npx eslint . --ext .js --ext .ts",
+        "test:eslint": "npx eslint . --ext .js,.ts",
         "test:tsc": "npx tsc --project . --noEmit"
     },
     "dependencies": {
-        "chalk": "^3.0.0",
-        "highlight.js": "^9.18.1",
+        "bluebird": "^3.7.2",
+        "chalk": "^4.0.0",
+        "cli-highlight": "^2.1.4",
         "lodash": "^4.17.15",
-        "moment": "^2.24.0",
-        "morgan": "^1.9.1",
+        "moment": "^2.25.2",
+        "morgan": "^1.10.0",
         "pretty-bytes": "^5.3.0",
-        "pretty-ms": "^6.0.0",
+        "pretty-ms": "^7.0.0",
+        "reflect-metadata": "^0.1.13",
         "winston": "^3.2.1"
     },
     "devDependencies": {
         "@babel/cli": "^7.8.4",
-        "@babel/core": "^7.8.4",
-        "@babel/plugin-transform-runtime": "^7.8.3",
-        "@babel/preset-env": "^7.8.4",
-        "@babel/preset-typescript": "^7.8.3",
-        "@morrighan/eslint-config": "^1.5.3",
+        "@babel/core": "^7.9.6",
+        "@babel/plugin-proposal-class-properties": "^7.8.3",
+        "@babel/plugin-transform-runtime": "^7.9.6",
+        "@babel/preset-env": "^7.9.6",
+        "@babel/preset-typescript": "^7.9.0",
+        "@cichol/eslint-config": "^2.0.0-beta.6",
+        "@types/bluebird": "^3.5.30",
+        "@types/chai": "^4.2.11",
         "@types/highlight.js": "^9.12.3",
-        "@types/lodash": "^4.14.149",
-        "@types/morgan": "^1.7.37",
+        "@types/lodash": "^4.14.150",
+        "@types/mocha": "^7.0.2",
+        "@types/morgan": "^1.9.0",
+        "@types/node": "^13.13.4",
         "eslint": "^6.8.0",
         "npm-run-all": "^4.1.5",
-        "typescript": "^3.7.5"
+        "typescript": "^3.8.3"
     },
     "engines": {
-        "node": "^12.16.1",
-        "npm": "^6.13.7"
+        "node": "^12.16.3",
+        "npm": "^6.14.4"
     },
     "publishConfig": {
-        "registry": "https://npm.pkg.github.com/"
+        "registry": "https://registry.npmjs.org/",
+        "access": "public"
     }
 }

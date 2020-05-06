@@ -1,18 +1,30 @@
 // Node.js built-in APIs.
 import path from 'path';
-import { version } from 'process';
+import process, { version } from 'process';
 
 // Third-party modules.
 import chalk from 'chalk';
 
 // Local helpers.
-import { labels } from './levels';
+import LoggingLevel from '../helpers/logging-level';
+import ColorScheme from '../helpers/color-scheme';
+import decorateLabel from '../helpers/label-decorator';
+
+// Type definitions.
+type LoggingData = { level: string, message: string } & Record<PropertyKey, any>;
+type HandledData = { label: string, payload: string };
 
 // Constants.
-const rootPath = path.resolve(__dirname, '../../..');
+const rootPath = process.cwd();
 const conjunction = ` ${chalk.blue('──')} `;
+const splat: unique symbol = Symbol.for('splat');
 
-const mapLocationOfErrorThrown = (filename: string): string => {
+// Handler metadata.
+export const name = 'error';
+export const level = LoggingLevel.Error;
+export const label = decorateLabel('ERROR', ColorScheme.Critical);
+
+function mapLocationOfErrorThrown(filename: string): string {
     let target = path.relative(rootPath, filename);
 
     if (target.startsWith('node_modules')) {
@@ -25,11 +37,16 @@ const mapLocationOfErrorThrown = (filename: string): string => {
     }
 
     return target;
-};
+}
 
-const formatError = (error: Error): { label: string; payload: string } => {
-    const { name, message } = error;
-    const { stack: rawStack } = error as { stack: string };
+export default function handle(data: LoggingData): HandledData | undefined {
+    const { [splat]: [ error ] = [] } = data as any;
+
+    if (!(error instanceof Error)) {
+        return undefined;
+    }
+
+    const { name, message, stack: rawStack = '' } = error;
 
     const stack = rawStack
         .slice(name.length + message.length + 3)
@@ -58,10 +75,8 @@ const formatError = (error: Error): { label: string; payload: string } => {
         }))
         .join('\n');
 
-    const label = labels.critical(name);
+    const label = decorateLabel(name, ColorScheme.Critical);
     const payload = `${message}\n\n${stack}\n`;
 
     return { label, payload };
-};
-
-export default formatError;
+}
