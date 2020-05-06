@@ -1,9 +1,3 @@
-// Node.js built-in APIs.
-const { env: environments } = require('process');
-
-// Constants.
-const { NODE_ENV: executionMode = 'development' } = environments;
-
 // Babel configuration.
 const presets = Object.entries({
     '@babel/preset-env': { targets: { node: 'current' } },
@@ -11,7 +5,8 @@ const presets = Object.entries({
 });
 
 const plugins = Object.entries({
-    '@babel/plugin-transform-runtime': { regenerator: false }
+    '@babel/plugin-proposal-class-properties': {},
+    '@babel/plugin-transform-runtime': {}
 });
 
 module.exports = { presets, plugins };
