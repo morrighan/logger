@@ -15,5 +15,5 @@ export default format.printf(data => {
     // Execute handler and then, get decorated payload.
     const { label, payload } = Reflect.apply(performHandle, undefined, [ data ]) ?? fallback;
 
-    return `${label} ${timestamp}\n${payload}`;
+    return `${label as string} ${timestamp}\n${payload as string}`;
 });
