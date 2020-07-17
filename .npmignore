@@ -1,9 +1,8 @@
+# Unnecessary files
+.*
+
 # Local configurations
-.editorconfig
-.eslintignore
-.gitattributes
 babel.config.js
-.eslintrc.json
 tsconfig.json
 
 # Sources

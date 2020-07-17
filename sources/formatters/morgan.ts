@@ -30,7 +30,7 @@ interface TokenIndexer {
 // Helpers.
 function decorateStatusCode(statusCode: keyof typeof STATUS_CODES): string {
     const groupOfCode = Math.floor(Number(statusCode) / 100) * 100;
-    const baseMessage = `${statusCode} ${STATUS_CODES[statusCode]}`;
+    const baseMessage = `${statusCode} ${STATUS_CODES[statusCode] as string}`;
 
     switch (groupOfCode) {
     case 200: {
@@ -59,7 +59,7 @@ function formatForMorgan(tokens: any, request: HttpRequest, response: HttpRespon
     // Raw values.
     const method = _('method');
     const URL = _('url');
-    const httpVersion = `HTTP/${_('http-version')}`;
+    const httpVersion = `HTTP/${_('http-version') as string}`;
     const statusCode = Number(_('status'));
     const contentLength = Number(_('res', 'content-length') ?? -1);
     const responseTime = Number(_('response-time') ?? -1);
@@ -75,10 +75,9 @@ function formatForMorgan(tokens: any, request: HttpRequest, response: HttpRespon
     const metadata = `(${$contentLength}, ${$responseTime})`;
 
     return [
-        `→ ${$method} ${URL} ${$version}`,
+        `→ ${$method} ${URL as string} ${$version}`,
         `← ${$version} ${$statusCode} ${metadata}`
     ].join('\n');
 }
-
 
 export default executionMode === ExecutionMode.DevelopmentMode ? formatForMorgan : morgan.combined;
