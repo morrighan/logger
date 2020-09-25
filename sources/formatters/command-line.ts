@@ -1,7 +1,11 @@
 // Third-party modules.
 import chalk from 'chalk';
+import rTracer from 'cls-rtracer';
 import moment from 'moment';
 import { format } from 'winston';
+
+// Local helpers.
+import LoggingLevel from '../helpers/logging-level';
 
 // Handler implementations.
 import handlers from '../handlers';
@@ -15,5 +19,11 @@ export default format.printf(data => {
     // Execute handler and then, get decorated payload.
     const { label, payload } = Reflect.apply(performHandle, undefined, [ data ]) ?? fallback;
 
-    return `${label as string} ${timestamp}\n${payload as string}`;
+    let extraFingerprint: string | undefined;
+
+    if (handler?.level === LoggingLevel.Http) {
+        extraFingerprint = `(Request-ID = ${rTracer.id() as string})`;
+    }
+
+    return `${label as string} ${timestamp}${extraFingerprint ? ` ${extraFingerprint}` : ''}\n${payload as string}`;
 });
