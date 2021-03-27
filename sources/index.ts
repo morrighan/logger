@@ -1,3 +1,1 @@
-import logger from './classes/logger';
-
-export default logger;
+export { default } from './classes/logger';

@@ -4,16 +4,27 @@ import { env as environments } from 'process';
 import { isMainThread } from 'worker_threads';
 
 // Type definitions.
-export enum ExecutionMode {
-    DevelopmentMode = 'development',
-    ProductionMode = 'production'
-}
+export const ExecutionMode = {
+    DevelopmentMode: 'development',
+    ProductionMode: 'production'
+} as const;
 
-export enum ClusteringMode { MasterProcess, WorkerProcess }
-export enum ThreadingMode { MainThread, WorkerThread }
+export const ClusteringMode = {
+    MasterProcess: 0,
+    WorkerProcess: 1
+} as const;
+
+export const ThreadingMode = {
+    MainThread: 0,
+    WorkerThread: 1
+} as const;
+
+export type ExecutionMode = typeof ExecutionMode[keyof typeof ExecutionMode];
+export type ClusteringMode = typeof ClusteringMode[keyof typeof ClusteringMode];
+export type ThreadingMode = typeof ThreadingMode[keyof typeof ThreadingMode];
 
 // Exportings.
-export const executionMode: ExecutionMode = (environments.NODE_ENV ?? ExecutionMode.DevelopmentMode) as ExecutionMode;
+export const executionMode = environments.NODE_ENV as ExecutionMode ?? ExecutionMode.DevelopmentMode;
 
 export const clusteringMode: ClusteringMode = isMaster
     ? ClusteringMode.MasterProcess

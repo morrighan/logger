@@ -17,51 +17,55 @@ function createScheme(options: { background: ColorValue, foreground: ColorValue 
 }
 
 // Color definitions.
-enum ColorValue {
+const ColorValue = {
     // Basic colors.
-    White = '#FFFFFF',
-    Gray = '#808080',
-    Black = '#000000',
+    White: '#FFFFFF',
+    Gray: '#808080',
+    Black: '#000000',
 
     // Specialized colors.
-    Critical = '#D63031',
-    Warning = '#FDCB6E',
-    Regular = '#0984E3',
-    Http = '#6AB04C',
-    Query = '#399AF3'
-}
+    Critical: '#D63031',
+    Warning: '#FDCB6E',
+    Regular: '#0984E3',
+    Http: '#6AB04C',
+    Query: '#399AF3'
+} as const;
 
-enum ColorScheme {
-    Critical = createScheme({
+type ColorValue = typeof ColorValue[keyof typeof ColorValue];
+
+const ColorScheme = {
+    Critical: createScheme({
         background: ColorValue.Critical,
         foreground: ColorValue.Black
     }),
 
-    Warning = createScheme({
+    Warning: createScheme({
         background: ColorValue.Warning,
         foreground: ColorValue.Black
     }),
 
-    Regular = createScheme({
+    Regular: createScheme({
         background: ColorValue.Regular,
         foreground: ColorValue.White
     }),
 
-    Http = createScheme({
+    Http: createScheme({
         background: ColorValue.Http,
         foreground: ColorValue.Black
     }),
 
-    Query = createScheme({
+    Query: createScheme({
         background: ColorValue.Query,
         foreground: ColorValue.Black
     }),
 
-    Loud = createScheme({
+    Loud: createScheme({
         background: ColorValue.Black,
         foreground: ColorValue.Gray
     })
-}
+} as const;
+
+type ColorScheme = typeof ColorScheme[keyof typeof ColorScheme];
 
 export function getChalkOf(colorSet: ColorScheme): Chalk {
     return colorizerMap.get(colorSet) ?? chalk;
