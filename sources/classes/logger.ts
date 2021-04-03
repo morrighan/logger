@@ -79,6 +79,15 @@ class Logger {
     }
 
     /**
+     * Logging message with specific level.
+     *
+     * @param level
+     * @param message
+     * @param args Additional metadata.
+     */
+    public log(level: LoggingLevelName, message: string, ...args: any[]): void;
+
+    /**
      * Logging HTTP I/O.
      *
      * @param request Node.js built-in `IncomingMessage` instance from `http` module.
@@ -92,15 +101,6 @@ class Logger {
      * @param error
      */
     public log(error: Error): void;
-
-    /**
-     * Logging message with specific level.
-     *
-     * @param level
-     * @param message
-     * @param args Additional metadata.
-     */
-    public log(level: LoggingLevelName, message: string, ...args: any[]): void;
 
     public log(...args: any[]): void | Promise<void> {
         const logger = this.#logger;
