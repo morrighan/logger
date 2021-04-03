@@ -22,7 +22,9 @@ export default format.printf(data => {
     let extraFingerprint: string | undefined;
 
     if (handler?.level === LoggingLevel.Http) {
-        extraFingerprint = `(Request-ID = ${rTracer.id() as string})`;
+        extraFingerprint = data.transactionId
+            ? `(Transaction-ID = ${data.transactionId as string})`
+            : `(Request-ID = ${rTracer.id() as string})`;
     }
 
     return `${label as string} ${timestamp}${extraFingerprint ? ` ${extraFingerprint}` : ''}\n${payload as string}`;
