@@ -1,6 +1,6 @@
 # `@cichol/logger`
 
-A logger based on winston for personal projects.
+A logger based on `winston` for personal projects.
 
 [![Build Status][github actions badge]][github actions][![License][license badge]](LICENSE)[![Package Version][npm package version badge]][npm package]
 
