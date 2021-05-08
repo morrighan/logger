@@ -1,7 +1,7 @@
 {
     "name": "@cichol/logger",
-    "version": "2.0.5",
-    "description": "A logger based on winston for personal projects.",
+    "version": "2.0.6",
+    "description": "A logger based on `winston` for personal projects.",
     "homepage": "https://github.com/morrighan/logger",
     "bugs": {
         "url": "https://github.com/morrighan/logger/issues"
@@ -21,10 +21,10 @@
         "url": "git+https://github.com/morrighan/logger.git"
     },
     "scripts": {
-        "build": "npx npm-run-all build:*",
+        "build": "npm run build:babel && npm run build:tsc",
         "build:babel": "npx babel --root-mode upward sources --extensions .js,.ts --out-dir releases --source-maps inline --delete-dir-on-start",
         "build:tsc": "npx tsc --project sources --outDir releases",
-        "test": "npx npm-run-all test:*",
+        "test": "npm run test:eslint && npm run test:tsc",
         "test:eslint": "npx eslint . --ext .js,.ts",
         "test:tsc": "npx tsc --project . --noEmit"
     },
@@ -48,13 +48,12 @@
         "@babel/plugin-transform-runtime": "^7.13.15",
         "@babel/preset-env": "^7.14.1",
         "@babel/preset-typescript": "^7.13.0",
-        "@cichol/eslint-config": "^3.0.0",
+        "@cichol/eslint-config": "^3.0.1",
         "@types/bluebird": "^3.5.34",
         "@types/lodash": "^4.14.168",
         "@types/morgan": "^1.9.2",
         "@types/node": "^14.14.37",
         "eslint": "^7.26.0",
-        "npm-run-all": "^4.1.5",
         "typescript": "^4.2.4"
     },
     "engines": {
