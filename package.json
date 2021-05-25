@@ -1,6 +1,6 @@
 {
     "name": "@cichol/logger",
-    "version": "2.0.6",
+    "version": "2.0.7",
     "description": "A logger based on `winston` for personal projects.",
     "homepage": "https://github.com/morrighan/logger",
     "bugs": {
@@ -12,18 +12,24 @@
         "email": "contact@cichol.com",
         "url": "https://www.cichol.com/"
     },
-    "main": "releases/index.js",
+    "type": "module",
+    "main": "releases/cjs/index.js",
     "directories": {
         "lib": "releases"
+    },
+    "exports": {
+        "import": "./releases/esm/index.js",
+        "require": "./releases/cjs/index.js"
     },
     "repository": {
         "type": "git",
         "url": "git+https://github.com/morrighan/logger.git"
     },
     "scripts": {
-        "build": "npm run build:babel && npm run build:tsc",
-        "build:babel": "npx babel --root-mode upward sources --extensions .js,.ts --out-dir releases --source-maps inline --delete-dir-on-start",
-        "build:tsc": "npx tsc --project sources --outDir releases",
+        "build": "npm run build:cjs && npm run build:esm",
+        "build:cjs": "BABEL_ENV=cjs npm run compile",
+        "build:esm": "BABEL_ENV=esm npm run compile",
+        "compile": "npx babel --root-mode upward sources --extensions .js,.ts --out-dir releases/$BABEL_ENV --source-maps inline --delete-dir-on-start && npx tsc --project sources --outDir releases/$BABEL_ENV",
         "test": "npm run test:eslint && npm run test:tsc",
         "test:eslint": "npx eslint . --ext .js,.ts",
         "test:tsc": "npx tsc --project . --noEmit"
@@ -42,18 +48,18 @@
         "winston": "^3.3.3"
     },
     "devDependencies": {
-        "@babel/cli": "^7.13.16",
-        "@babel/core": "^7.14.0",
-        "@babel/plugin-proposal-class-properties": "^7.13.0",
-        "@babel/plugin-transform-runtime": "^7.13.15",
-        "@babel/preset-env": "^7.14.1",
+        "@babel/cli": "^7.14.3",
+        "@babel/core": "^7.14.3",
+        "@babel/plugin-transform-runtime": "^7.14.3",
+        "@babel/preset-env": "^7.14.2",
         "@babel/preset-typescript": "^7.13.0",
-        "@cichol/eslint-config": "^3.0.1",
-        "@types/bluebird": "^3.5.34",
-        "@types/lodash": "^4.14.168",
+        "@cichol/eslint-config": "^3.0.2",
+        "@types/babel__core": "^7.1.14",
+        "@types/bluebird": "^3.5.35",
+        "@types/lodash": "^4.14.170",
         "@types/morgan": "^1.9.2",
-        "@types/node": "^14.14.37",
-        "eslint": "^7.26.0",
+        "@types/node": "^15.6.1",
+        "eslint": "^7.27.0",
         "typescript": "^4.2.4"
     },
     "engines": {
