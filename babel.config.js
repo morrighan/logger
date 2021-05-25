@@ -11,6 +11,7 @@ const modules = envName === 'esm' ? false : 'auto';
  */
 function configurateBabel(API) {
     API.assertVersion('^7.14.0');
+    API.cache.never();
 
     const presets = Object.entries({
         '@babel/preset-env': { bugfixes: true, useBuiltIns: 'usage', targets: { node: 'current' }, corejs, modules },
