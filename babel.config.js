@@ -9,7 +9,7 @@ const modules = envName === 'esm' ? false : 'auto';
  * @param {import('@babel/core').ConfigAPI } API
  * @returns {import('@babel/core').TransformOptions}
  */
-export default function configurateBabel(API) {
+function configurateBabel(API) {
     API.assertVersion('^7.14.0');
 
     const presets = Object.entries({
@@ -23,3 +23,5 @@ export default function configurateBabel(API) {
 
     return { presets, plugins };
 }
+
+module.exports = configurateBabel;
