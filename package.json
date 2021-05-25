@@ -1,6 +1,6 @@
 {
     "name": "@cichol/logger",
-    "version": "2.0.8",
+    "version": "2.0.9",
     "description": "A logger based on `winston` for personal projects.",
     "homepage": "https://github.com/morrighan/logger",
     "bugs": {
@@ -12,15 +12,14 @@
         "email": "contact@cichol.com",
         "url": "https://www.cichol.com/"
     },
-    "type": "module",
-    "main": "releases/cjs/index.cjs",
-    "module": "releases/esm/index.mjs",
+    "main": "releases/cjs/index.js",
+    "module": "releases/esm/index.js",
     "directories": {
         "lib": "releases"
     },
     "exports": {
-        "import": "./releases/esm/index.mjs",
-        "require": "./releases/cjs/index.cjs"
+        "import": "./releases/esm/index.js",
+        "require": "./releases/cjs/index.js"
     },
     "repository": {
         "type": "git",
@@ -28,9 +27,9 @@
     },
     "scripts": {
         "build": "npm run build:cjs && npm run build:esm",
-        "build:cjs": "BABEL_ENV=\"cjs\" JS_EXTENSION=\".cjs\" npm run compile",
-        "build:esm": "BABEL_ENV=\"esm\" JS_EXTENSION=\".mjs\" npm run compile",
-        "compile": "npx babel --root-mode upward sources --extensions .js,.ts --out-dir releases/$BABEL_ENV --out-file-extension $JS_EXTENSION --source-maps inline --delete-dir-on-start && npx tsc --project sources --outDir releases/$BABEL_ENV",
+        "build:cjs": "BABEL_ENV=\"cjs\" npm run compile",
+        "build:esm": "BABEL_ENV=\"esm\" npm run compile",
+        "compile": "npx babel --root-mode upward sources --extensions .js,.ts --out-dir releases/$BABEL_ENV --source-maps inline --delete-dir-on-start && npx tsc --project sources --outDir releases/$BABEL_ENV",
         "test": "npm run test:eslint && npm run test:tsc",
         "test:eslint": "npx eslint . --ext .js,.ts",
         "test:tsc": "npx tsc --project . --noEmit"
