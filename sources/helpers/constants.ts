@@ -1,5 +1,5 @@
 // Node.js built-in APIs.
-import { isMaster } from 'cluster';
+import cluster from 'cluster';
 import { env as environments } from 'process';
 import { isMainThread } from 'worker_threads';
 
@@ -26,7 +26,7 @@ export type ThreadingMode = typeof ThreadingMode[keyof typeof ThreadingMode];
 // Exportings.
 export const executionMode = environments.NODE_ENV as ExecutionMode ?? ExecutionMode.DevelopmentMode;
 
-export const clusteringMode: ClusteringMode = isMaster
+export const clusteringMode: ClusteringMode = cluster.isPrimary ?? cluster.isMaster
     ? ClusteringMode.MasterProcess
     : ClusteringMode.WorkerProcess;
 
