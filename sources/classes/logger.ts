@@ -116,6 +116,7 @@ class Logger {
         case (args.length >= 1 && args[0] instanceof Error): {
             const [ error, ...data ] = args as [ Error, ...any[] ];
 
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
             logger.log('error' as LoggingLevelName, error.message, error, ...data);
 
             return undefined;
@@ -124,6 +125,7 @@ class Logger {
         default: {
             const [ level, message, ...data ] = args as [ string, string, ...any[] ];
 
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
             logger.log(level, message, ...data);
 
             return undefined;

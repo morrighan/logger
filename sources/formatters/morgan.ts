@@ -53,6 +53,7 @@ function decorateStatusCode(statusCode: keyof typeof STATUS_CODES): string {
 
 function formatForMorgan(tokens: any, request: HttpRequest, response: HttpResponse): string {
     function _(token: string, ...subArgs: any[]): string | void {
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
         return (tokens as TokenIndexer)[token](request, response, ...subArgs);
     }
 
